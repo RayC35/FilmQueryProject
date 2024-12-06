@@ -65,7 +65,7 @@ public class Actor {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Actor [id=").append(id).append(", firstName=").append(firstName).append(", lastName=")
-				.append(lastName).append("]");
+				.append(lastName).append("]"); 
 		return builder.toString();
 	}
 

@@ -43,6 +43,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		  film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 		  film.setRating(filmResult.getString("rating"));
 		  film.setSpecialFeatures(filmResult.getString("special_features"));
+		  film.setActors(findActorsByFilmId(filmId));
 	  }
     filmResult.close();
     stmt.close();
@@ -92,7 +93,8 @@ public List<Actor> findActorsByFilmId(int filmId) {
 	try {
 		Connection conn = DriverManager.getConnection(URL, user, pass);
 
-		String sql = "SELECT id, first_name, last_name FROM actor JOIN film_actor ON id = actor_id WHERE film_id = ?";
+		String sql = "SELECT id, first_name, last_name FROM actor "
+				+ " JOIN film_actor ON id = actor_id WHERE film_id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, filmId);
 		

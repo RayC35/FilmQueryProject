@@ -1,5 +1,6 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Film {
@@ -15,6 +16,7 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private List<Actor> actors;
 	
 	public Film() {
 		super();
@@ -142,6 +144,18 @@ public class Film {
 				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(specialFeatures, other.specialFeatures) && Objects.equals(title, other.title);
 	}
+
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+
 	
 	
 	

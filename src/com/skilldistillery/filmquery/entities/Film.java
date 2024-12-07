@@ -114,13 +114,13 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
-	@Override
-	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", languageID=" + languageID + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+//				+ ", languageID=" + languageID + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+//				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
+//				+ ", specialFeatures=" + specialFeatures + "]";
+//	}
 
 	@Override
 	public int hashCode() {
@@ -153,6 +153,15 @@ public class Film {
 
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Film [title=").append(title).append(", description=").append(description)
+				.append(", releaseYear=").append(releaseYear).append(", rating=").append(rating).append("]");
+		return builder.toString();
 	}
 
 

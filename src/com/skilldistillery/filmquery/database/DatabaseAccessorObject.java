@@ -31,7 +31,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  //EXECUTE QUERY
 	  ResultSet filmResult = stmt.executeQuery();
 	  //PROCESS RESULT
-	  while (filmResult.next()) {
+	  if (filmResult.next()) {
 		  film = new Film();
 		  film.setId(filmResult.getInt("id"));
 		  film.setTitle(filmResult.getString("title"));
@@ -51,9 +51,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  } catch (SQLException sqle) {
 		  sqle.printStackTrace();
 	  }
-	  return film;
-    
+		  return film;		  
   }
+  
   
 
 @Override
@@ -114,6 +114,11 @@ public List<Actor> findActorsByFilmId(int filmId) {
 		sqle.printStackTrace();
 	}
 	return actors;
+}
+
+public Film findFilmByKeyword() {
+	return null;
+	
 }
   
 

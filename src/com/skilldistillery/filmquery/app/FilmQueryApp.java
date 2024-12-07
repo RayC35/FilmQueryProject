@@ -49,7 +49,12 @@ public class FilmQueryApp {
     	System.out.println("Enter Film ID: ");
     	int filmId = input.nextInt();
     	Film result = db.findFilmById(filmId);
-    	System.out.println(result);
+    	if (result == null) {
+    		System.out.println("Invalid Film ID. Try again.");
+    	}
+    	else {
+    		System.out.println(result);
+    	}
     	System.out.println();
     	break;
     case 2:
@@ -57,12 +62,9 @@ public class FilmQueryApp {
     case 3:
     	System.out.println("Good-bye");
     	keepGoing = false;
-    }
-    }
-	  //PRINT MENU
-//	  GET CHOICE
-//	  ACT ON CHOICE
-//	  REPEAT UNTIL QUIT
+    	}
+	}
+	
   }
   
   private void menu() {

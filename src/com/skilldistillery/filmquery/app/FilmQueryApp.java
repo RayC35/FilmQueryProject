@@ -26,6 +26,8 @@ public class FilmQueryApp {
 //  List<Actor> actors = db.findActorsByFilmId(1);
 //  System.out.println(actors);
 //    System.out.println(film.getActors());
+//  	List<Film> films = db.findFilmByKeyword("dino");
+//  	System.out.println(films);
 //  }
 
   private void launch() {
@@ -58,6 +60,16 @@ public class FilmQueryApp {
     	System.out.println();
     	break;
     case 2:
+    	System.out.println("Enter a keyword to search for: ");
+    	String Keyword = input.next();
+    	List<Film> result2 = db.findFilmByKeyword(Keyword);
+    	if (result2 == null) {
+    		System.out.println("Film associated with that keyword in database. Try again.");
+    	}
+    	else {
+    		System.out.println(result2);
+    	}
+    	System.out.println();
     	break;
     case 3:
     	System.out.println("Good-bye");

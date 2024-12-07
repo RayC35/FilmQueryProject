@@ -44,6 +44,14 @@ public class Film {
 		super();
 		this.id = id;
 	}
+	
+	public Film(String title, String description, int releaseYear, String rating) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.rating = rating;
+	}
 
 
 	public int getId() {

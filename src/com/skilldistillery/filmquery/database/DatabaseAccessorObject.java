@@ -53,6 +53,40 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  }
 		  return film;		  
   }
+  @Override
+  public List<Film> findFilmByKeyword(String keyword) {
+	  List<Film> films = new ArrayList<>();
+	  Film film = null;
+	  keyword = "%" + keyword + "%";
+	  //CONNECT
+	  try {
+	  Connection conn = DriverManager.getConnection(URL, user, pass);
+	  //DEFINE
+	  //OR description LIKE?
+	  String sql = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+	  PreparedStatement stmt = conn.prepareStatement(sql);
+	  stmt.setString(1, keyword);
+	  stmt.setString(2, keyword);
+	  //EXECUTE
+	  ResultSet rs = stmt.executeQuery();
+	  //PROCESS
+	  while (rs.next()) {
+		  film = new Film();
+		  film.setTitle(rs.getString("title"));
+		  film.setDescription(rs.getString("description"));
+		  film.setReleaseYear(rs.getInt("release_year"));
+		  film.setRating(rs.getString("rating"));
+		  films.add(film);
+	  	}
+	  rs.close();
+	  stmt.close();
+	  conn.close();
+	  
+	  } catch (SQLException sqle) {
+		  sqle.printStackTrace();
+	  }
+	  return films;
+	}
   
   
 
@@ -115,13 +149,7 @@ public List<Actor> findActorsByFilmId(int filmId) {
 	}
 	return actors;
 }
-
-public Film findFilmByKeyword() {
-	return null;
-	
-}
   
-
 
 static {
 	try {

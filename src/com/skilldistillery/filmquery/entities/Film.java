@@ -10,6 +10,7 @@ public class Film {
 	private String description;
 	private int releaseYear;
 	private int languageID;
+	private String language;
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
@@ -166,14 +167,32 @@ public class Film {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Film [title=").append(title).append(", description=").append(description)
-				.append(", releaseYear=").append(releaseYear).append(", rating=").append(rating).append("]");
-		return builder.toString();
+		return "Film [title=" + title + ", description=" + description + ", releaseYear=" + releaseYear + ", language="
+				+ language + ", rating=" + rating + ", actors=" + actors + "]";
 	}
 
 
+	public String getLanguage() {
+		return language;
+	}
+
+
+	public void setLanguage(String language) {
+			this.language = language;
+		}
+	}
+
+
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Film [title=").append(title).append(", description=").append(description)
+//				.append(", releaseYear=").append(releaseYear).append(", rating=").append(rating).append("]");
+//		return builder.toString();
+//	}
+
+
 	
 	
 	
-}
+

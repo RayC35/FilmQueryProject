@@ -25,7 +25,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  try {
 	  Connection conn = DriverManager.getConnection(URL, user, pass);
 	  //DEFINE QUERY AND SUB VALUE(S)
-	  String sql = "SELECT * FROM film WHERE id = ?";
+	  String sql = "SELECT * FROM film JOIN language ON language_id = language.id WHERE film.id = ?";
 	  PreparedStatement stmt = conn.prepareStatement(sql);
 	  stmt.setInt(1, filmId);
 	  //EXECUTE QUERY
@@ -38,6 +38,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		  film.setDescription(filmResult.getString("description"));
 		  film.setReleaseYear(filmResult.getInt("release_year"));
 		  film.setLanguageID(filmResult.getInt("language_id"));
+		  film.setLanguage(filmResult.getString("name"));
 		  film.setRentalDuration(filmResult.getInt("rental_duration"));
 		  film.setLength(filmResult.getInt("length"));
 		  film.setReplacementCost(filmResult.getDouble("replacement_cost"));
@@ -72,10 +73,16 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  //PROCESS
 	  while (rs.next()) {
 		  film = new Film();
+		  film.setId(rs.getInt("id"));
 		  film.setTitle(rs.getString("title"));
 		  film.setDescription(rs.getString("description"));
 		  film.setReleaseYear(rs.getInt("release_year"));
+		  film.setLanguageID(rs.getInt("language_id"));
+		  film.setRentalDuration(rs.getInt("rental_duration"));
+		  film.setLength(rs.getInt("length"));
+		  film.setReplacementCost(rs.getDouble("replacement_cost"));
 		  film.setRating(rs.getString("rating"));
+		  film.setSpecialFeatures(rs.getString("special_features"));
 		  films.add(film);
 	  	}
 	  rs.close();
@@ -161,6 +168,13 @@ static {
 		System.err.println("Exiting.");
 		System.exit(1); // No point in continuing.
 	}
+}
+
+
+@Override
+public void findLanguageById(int filmId) {
+	// TODO Auto-generated method stub
+	
 }
   
 }

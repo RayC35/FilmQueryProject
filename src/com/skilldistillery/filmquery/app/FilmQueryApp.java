@@ -62,11 +62,11 @@ public class FilmQueryApp {
     		System.out.println(film.getDescription());
     		System.out.println(film.getLanguage());
     		List<Actor> actors = film.getActors();
-    		System.out.println("******** Cast *******");
+    		System.out.println("******** Cast ********");
     		for (Actor actor : actors) {
 				System.out.println(actor.getFirstName() + " " + actor.getLastName());
 			}
-    		System.out.println("*********************");
+    		System.out.println("**********************");
     	}
     	System.out.println();
     	break;
@@ -79,8 +79,18 @@ public class FilmQueryApp {
     	}
     	else {
     		System.out.println();
-    		for (Film films : film2) {
-    			System.out.println(films.getTitle());
+    		for (Film movie : film2) {
+    			System.out.println(movie.getTitle());
+    			System.out.println(movie.getReleaseYear());
+    			System.out.println(movie.getRating());
+    			System.out.println(movie.getDescription());
+    			System.out.println(movie.getLanguage());
+    			System.out.println("********* Cast *********");
+    			List<Actor> actors = movie.getActors();
+    				for (Actor actor : actors) {
+    					System.out.println(actor.getFirstName() + " " + actor.getLastName());
+    					}
+    				System.out.println("************************\n");
 			}
     	}
     	System.out.println();

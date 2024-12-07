@@ -63,8 +63,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	  try {
 	  Connection conn = DriverManager.getConnection(URL, user, pass);
 	  //DEFINE
-	  //OR description LIKE?
-	  String sql = "SELECT * FROM film JOIN language ON language_id = language.id WHERE title LIKE ? OR description LIKE ?";
+	  String sql = "SELECT * FROM film JOIN language ON film.language_id = language.id"
+//	  		+ " JOIN film_actor ON film.id = film_actor.film_id"
+//	  		+ " JOIN actor ON film_actor.actor_id = actor.id "
+	  		+ " WHERE title LIKE ? OR description LIKE ?";
 	  PreparedStatement stmt = conn.prepareStatement(sql);
 	  stmt.setString(1, keyword);
 	  stmt.setString(2, keyword);
@@ -79,13 +81,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		  film.setReleaseYear(rs.getInt("release_year"));
 		  film.setLanguageID(rs.getInt("language_id"));
 		  film.setLanguage(rs.getString("name"));
-		  
 		  film.setRentalDuration(rs.getInt("rental_duration"));
 		  film.setLength(rs.getInt("length"));
 		  film.setReplacementCost(rs.getDouble("replacement_cost"));
 		  film.setRating(rs.getString("rating"));
 		  film.setSpecialFeatures(rs.getString("special_features"));
-		  
+		  film.setActors(findActorsByFilmId(rs.getInt("id")));
 		  
 		  films.add(film);
 	  	}

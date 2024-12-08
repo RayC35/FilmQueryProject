@@ -87,7 +87,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		  film.setRating(rs.getString("rating"));
 		  film.setSpecialFeatures(rs.getString("special_features"));
 		  film.setActors(findActorsByFilmId(rs.getInt("id")));
-		  
 		  films.add(film);
 	  	}
 	  rs.close();
@@ -172,14 +171,6 @@ static {
 		e.printStackTrace();
 		System.err.println("Exiting.");
 		System.exit(1); // No point in continuing.
+			}
+		}
 	}
-}
-
-
-@Override
-public void findLanguageById(int filmId) {
-	// TODO Auto-generated method stub
-	
-}
-
-}

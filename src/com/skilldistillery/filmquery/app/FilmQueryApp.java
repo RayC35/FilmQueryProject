@@ -32,9 +32,7 @@ public class FilmQueryApp {
 
   private void launch() {
     Scanner input = new Scanner(System.in);
-    
     startUserInterface(input);
-    
     input.close();
   }
 
@@ -56,17 +54,15 @@ public class FilmQueryApp {
     	}
     	else {
     		System.out.println();
-    		System.out.println(film.getTitle());
-    		System.out.println(film.getReleaseYear());
-    		System.out.println(film.getRating());
-    		System.out.println(film.getDescription());
-    		System.out.println(film.getLanguage());
+    		System.out.println(film.getTitle() + " (" + film.getReleaseYear() + "), Rated " + film.getRating());
+    		System.out.println("Language: " + film.getLanguage());
+    		System.out.println("Synopsis: " + film.getDescription());
+    		System.out.println("********* Cast *********");
     		List<Actor> actors = film.getActors();
-    		System.out.println("******** Cast ********");
     		for (Actor actor : actors) {
 				System.out.println(actor.getFirstName() + " " + actor.getLastName());
 			}
-    		System.out.println("**********************");
+    		System.out.println("************************");
     	}
     	System.out.println();
     	break;
@@ -74,17 +70,16 @@ public class FilmQueryApp {
     	System.out.println("Enter a keyword to search for: ");
     	String Keyword = input.next();
     	List<Film> film2 = db.findFilmByKeyword(Keyword);
+    	
     	if (film2 == null) {
     		System.out.println("No film associated with that keyword in database. Try again.");
     	}
     	else {
     		System.out.println();
     		for (Film movie : film2) {
-    			System.out.println(movie.getTitle());
-    			System.out.println(movie.getReleaseYear());
-    			System.out.println(movie.getRating());
-    			System.out.println(movie.getDescription());
-    			System.out.println(movie.getLanguage());
+        		System.out.println(movie.getTitle() + " (" + movie.getReleaseYear() + "), Rated " + movie.getRating());
+        		System.out.println("Language: " + movie.getLanguage());
+    			System.out.println("Synopsis: " + movie.getDescription());
     			System.out.println("********* Cast *********");
     			List<Actor> actors = movie.getActors();
     				for (Actor actor : actors) {
@@ -93,24 +88,18 @@ public class FilmQueryApp {
     				System.out.println("************************\n");
 			}
     	}
-    	System.out.println();
     	break;
     case 3:
-    	System.out.println("Good-bye");
+    	System.out.println("Good-bye.");
     	keepGoing = false;
     	}
 	}
-	
   }
-  
   private void menu() {
-	  System.out.println("******* Main Menu *******");
+	  System.out.println("**** Movie Database ****");
 	  System.out.println("1. Find Film By ID");
 	  System.out.println("2. Find Film With Keyword");
 	  System.out.println("3. Exit");
-	  System.out.println("*************************");
+	  System.out.println("************************");
   } 
-  
- 
-
 }
